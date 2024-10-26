@@ -1,5 +1,4 @@
 package modelo;
-import java.time.format.SignStyle;
 
 import util.Utilitario;
 
@@ -13,6 +12,8 @@ public class Baraja {
   public Baraja(){
     this.cartas = new Carta[NUM_CARTAS];
     this.siguienteCarta = 0;
+    crearBaraja();
+    barajar();
   }
 
   // Creamos la baraja (mazo)
@@ -60,10 +61,14 @@ public class Baraja {
     return c;
   }
 
+  public int cartasDisponibles(){
+    return (NUM_CARTAS - siguienteCarta);
+  }
+
   public Carta[] darCartas(int numCartas){
     if(numCartas > NUM_CARTAS){
       System.out.println("NO SE PUEDEN DAR MAS CARTAS DE LAS QUE HAY.");
-    } else if (NUM_CARTAS - siguienteCarta < numCartas) {
+    } else if (cartasDisponibles() < numCartas) {
       System.out.println("NO HAY SUFICIENTES CARTAS QUE MOSTRAR");
     } else {
       Carta[] cartasDar = new Carta[numCartas];
@@ -77,7 +82,7 @@ public class Baraja {
 
   // Muestra las cartas que ya han salido
   public void cartasMonton(){
-    if((NUM_CARTAS - siguienteCarta) == NUM_CARTAS){
+    if(cartasDisponibles() == NUM_CARTAS){
       System.out.println("NO SE HA SACADO NINGUNA CARTA.");
     } else {
       // Recorre de 0 hasta siguiente carta
@@ -89,7 +94,7 @@ public class Baraja {
 
   // Muestra las cartas que aun no han salido
   public void mostrarBaraja(){
-    if((NUM_CARTAS - siguienteCarta) ==0){
+    if(cartasDisponibles() == 0){
       System.out.println("No hay cartas que mostrar");
     } else {
       for (int i = siguienteCarta; i < cartas.length; i++) {
@@ -97,5 +102,6 @@ public class Baraja {
       }
     }
   }
+
 
 }
