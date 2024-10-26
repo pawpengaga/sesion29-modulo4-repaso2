@@ -6,6 +6,7 @@ public class Carta {
   private String palo;
 
   public static final String[] PALOS = {"ESPADAS", "OROS", "COPAS", "BASTOS"};
+  public static final int LIMITE_CARTA_PALO = 12;
 
   public Carta(int numero, String palo) {
     super();
